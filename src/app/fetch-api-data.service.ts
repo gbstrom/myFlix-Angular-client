@@ -6,7 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 
 
 //Declaring the api url that will provide data for the client app
-const apiUrl = 'https://cfmovieapp.herokuapp.com';
+const apiUrl = 'https://cfmovieapp.herokuapp.com/';
 @Injectable({
   providedIn: 'root'
 })

@@ -29,6 +29,10 @@ loginUser(): void {
   this.fetchApiData.userLogin(this.userData).subscribe((result) => {
 // Logic for a successful user login goes here! (To be implemented)
    this.dialogRef.close(); // This will close the modal on success!
+
+   localStorage.setItem('token', result.token);
+   localStorage.setItem('user', JSON.stringify(result.user));
+
    this.snackBar.open(result, 'OK', {
       duration: 2000
    });

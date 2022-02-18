@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../fetch-api-data.service'
-import { DirectorCardComponent } from '../director-card/director-card.component'
+import { DirectorCardComponent } from '../director-card/director-card.component';
+import { DescriptionCardComponent } from '../description-card/description-card.component';
 import { defaultThrottleConfig } from 'rxjs/internal/operators/throttle';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-card',
@@ -12,9 +14,11 @@ import { MatDialog } from '@angular/material/dialog';
 
 export class MovieCardComponent {
   movies: any[] = [];
+  user: any[] = [];
   constructor(
     public fetchApiData: UserRegistrationService,
     public dialog: MatDialog,
+    private router: Router,
     ) { }
 
   ngOnInit(): void {
@@ -39,5 +43,16 @@ export class MovieCardComponent {
       },
       width: '500px'
     });
+  }
+
+  openProfile(): void {
+    this.router.navigate(['/profile']);
+  }
+
+  openDescription(description: string): void {
+    this.dialog.open(DescriptionCardComponent)
+      data: {
+
+      }
   }
 }

@@ -1,15 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-profile-view',
   templateUrl: './profile-view.component.html',
   styleUrls: ['./profile-view.component.scss']
 })
+
 export class ProfileViewComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  public data = {
+    Username: '',
+    Email: '',
+    Birthdate: '',
+    Favorites: [],
   }
+  
+    constructor(
+      // @Inject(MAT_DIALOG_DATA)
+      
+    ) { }
+  
+    ngOnInit(): void {
+      if (localStorage.getItem('user') != null) {
+        let userData: any = localStorage.getItem('user');
+        this.data = JSON.parse(userData);
+      };
 
-}
+    }
+  
+  }

@@ -1,1 +1,20 @@
-<p>profile-view works!</p>
+
+<mat-dialog-content>
+    <mat-card>
+      <mat-card-title>
+        Username: {{data.Username}}
+      </mat-card-title>
+      <mat-card-content>
+        Email: {{data.Email}}
+      </mat-card-content>
+      <mat-card-content>
+        Born: {{data.Birthdate}}
+      </mat-card-content>
+      <mat-card-content>
+        Favorites: {{data.Favorites}}
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button [mat-dialog-close]="true" color="primary">Close</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-dialog-content>

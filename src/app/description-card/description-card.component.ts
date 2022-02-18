@@ -11,10 +11,8 @@ export class DescriptionCardComponent implements OnInit {
     constructor(
       @Inject(MAT_DIALOG_DATA)
       public data: {
-        Name: string;
-        Bio: string;
-        Birth: string;
-        Death: string;
+        Title: string;
+        Description: string;
       }
     ) { }
   

@@ -56,14 +56,17 @@ export class MovieCardComponent {
     });
   }
 
-  openProfile(): void {
-    this.router.navigate(['/profile']);
+  openDescription(name: string, description: string): void {
+    this.dialog.open(DescriptionCardComponent, {
+      data: {
+        Title: name,
+        Description: description,
+      },
+      width: '500px'
+    });
   }
 
-  openDescription(description: string): void {
-    this.dialog.open(DescriptionCardComponent)
-      data: {
-
-      }
+  openProfile(): void {
+    this.router.navigate(['/profile']);
   }
 }

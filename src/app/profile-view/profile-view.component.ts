@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-view',
@@ -16,10 +17,15 @@ export class ProfileViewComponent implements OnInit {
   }
   
     constructor(
+      private router: Router,
       // @Inject(MAT_DIALOG_DATA)
       
     ) { }
   
+    goToMovieCard(): void {
+      this.router.navigate(['movies']);
+    }
+
     ngOnInit(): void {
       if (localStorage.getItem('user') != null) {
         let userData: any = localStorage.getItem('user');

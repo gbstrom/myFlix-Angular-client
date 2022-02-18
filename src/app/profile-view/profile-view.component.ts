@@ -12,7 +12,7 @@ export class ProfileViewComponent implements OnInit {
   public data = {
     Username: '',
     Email: '',
-    Birthdate: '',
+    Birthday: '',
     Favorites: [],
   }
   
@@ -30,6 +30,7 @@ export class ProfileViewComponent implements OnInit {
       if (localStorage.getItem('user') != null) {
         let userData: any = localStorage.getItem('user');
         this.data = JSON.parse(userData);
+        console.log(this.data)
       };
 
     }

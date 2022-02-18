@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../fetch-api-data.service'
 import { DirectorCardComponent } from '../director-card/director-card.component';
+import { GenreCardComponent } from '../genre-card/genre-card.component';
 import { DescriptionCardComponent } from '../description-card/description-card.component';
 import { defaultThrottleConfig } from 'rxjs/internal/operators/throttle';
 import { MatDialog } from '@angular/material/dialog';
@@ -40,6 +41,16 @@ export class MovieCardComponent {
         Bio: bio,
         Birth: birth,
         Death: death,
+      },
+      width: '500px'
+    });
+  }
+
+  openGenre(name: string, description: string): void {
+    this.dialog.open(GenreCardComponent, {
+      data: {
+        Name: name,
+        Description: description,
       },
       width: '500px'
     });

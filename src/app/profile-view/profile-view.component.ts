@@ -13,7 +13,7 @@ export class ProfileViewComponent implements OnInit {
     Username: '',
     Email: '',
     Birthday: '',
-    Favorites: [],
+    FavoriteMovies: [],
   }
   
     constructor(

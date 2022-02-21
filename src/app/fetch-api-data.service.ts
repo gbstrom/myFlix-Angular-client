@@ -120,9 +120,13 @@ export class UserRegistrationService {
 
   // Making the api call for adding a movie to the user's favorites
   addFavoriteMovie(movieID: any): Observable<any> {
-    const username = localStorage.getItem('user')
+    // These lines are needed because the user in localStorage is a string, so we have to change it to an object, and then extract the username from that object--
+    const user: any = localStorage.getItem('user')
+    const userObject: any = JSON.parse(user);
+    const username: any = userObject.Username;
+    // The rest is explanatory:
     const token = localStorage.getItem('token');
-    return this.http.post(apiUrl + 'users/' + username + '/movies/' + movieID, {
+    return this.http.post(apiUrl + 'users/' + username + '/movies/' + movieID, {}, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,

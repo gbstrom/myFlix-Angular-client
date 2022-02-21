@@ -4,6 +4,7 @@ import { DirectorCardComponent } from '../director-card/director-card.component'
 import { GenreCardComponent } from '../genre-card/genre-card.component';
 import { DescriptionCardComponent } from '../description-card/description-card.component';
 import { defaultThrottleConfig } from 'rxjs/internal/operators/throttle';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
@@ -16,14 +17,17 @@ import { Router } from '@angular/router';
 export class MovieCardComponent {
   movies: any[] = [];
   user: any[] = [];
+  currentUsersFaves: any[] =[];
   constructor(
     public fetchApiData: UserRegistrationService,
     public dialog: MatDialog,
+    public snackBar: MatSnackBar,
     private router: Router,
     ) { }
 
   ngOnInit(): void {
     this.getMovies();
+    // this.getCurrentUser();
   }
 
   getMovies(): void {
@@ -31,6 +35,14 @@ export class MovieCardComponent {
       this.movies = resp;
       console.log(this.movies);
       return this.movies;
+    });
+  }
+
+  getCurrentUser(username: string): void {
+    this.fetchApiData.getUser(username).subscribe((resp: any) => {
+      this.user = resp;
+      this.currentUsersFaves = resp.FavoriteMovies;
+      return (this.user, this.currentUsersFaves);
     });
   }
 
@@ -69,4 +81,12 @@ export class MovieCardComponent {
   openProfile(): void {
     this.router.navigate(['/profile']);
   }
+
+  addToFavorites(movieId: string): void {
+    this.fetchApiData.addFavoriteMovie(movieId).subscribe((resp: any) => {
+      this.ngOnInit();
+      this.snackBar.open('Added to favorites', 'OK', { duration: 2000 });
+    });
+  }
+
 }

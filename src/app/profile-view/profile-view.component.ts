@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { UpdateInfoComponent } from '../update-info/update-info.component';
 
 @Component({
   selector: 'app-profile-view',
@@ -18,6 +20,7 @@ export class ProfileViewComponent implements OnInit {
   
     constructor(
       private router: Router,
+      public dialog: MatDialog,
       // @Inject(MAT_DIALOG_DATA)
       
     ) { }
@@ -27,7 +30,9 @@ export class ProfileViewComponent implements OnInit {
     }
 
     updateInfo(): void {
-      
+      this.dialog.open(UpdateInfoComponent, {
+        width: '500px'
+      });
     }
 
     ngOnInit(): void {

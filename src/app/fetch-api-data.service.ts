@@ -154,7 +154,11 @@ export class UserRegistrationService {
 
   // Making the api call for editing a user's info
   editUser(userDetails: any): Observable<any> {
-    const username = localStorage.getItem('user')
+    // These lines are needed because the user in localStorage is a string, so we have to change it to an object, and then extract the username from that object--
+    const user: any = localStorage.getItem('user')
+    const userObject: any = JSON.parse(user);
+    const username: any = userObject.Username;
+    // The rest is explanatory:
     const token = localStorage.getItem('token');
     return this.http.put(apiUrl + 'users/' + username, userDetails, {
       headers: new HttpHeaders(

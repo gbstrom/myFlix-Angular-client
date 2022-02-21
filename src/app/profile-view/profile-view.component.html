@@ -14,6 +14,9 @@
         Favorites: {{data.FavoriteMovies}}
       </mat-card-content>
       <mat-card-actions>
+        <button mat-raised-button (click)='updateInfo()' color="primary">Update Your Information</button>
+      </mat-card-actions>
+      <mat-card-actions>
         <button mat-raised-button (click)='goToMovieCard()' color="primary">Close</button>
       </mat-card-actions>
     </mat-card>

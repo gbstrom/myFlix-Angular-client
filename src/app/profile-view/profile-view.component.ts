@@ -26,6 +26,10 @@ export class ProfileViewComponent implements OnInit {
       this.router.navigate(['movies']);
     }
 
+    updateInfo(): void {
+      
+    }
+
     ngOnInit(): void {
       if (localStorage.getItem('user') != null) {
         let userData: any = localStorage.getItem('user');

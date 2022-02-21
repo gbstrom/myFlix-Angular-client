@@ -22,6 +22,7 @@ import { GenreCardComponent } from './genre-card/genre-card.component';
 import { DirectorCardComponent } from './director-card/director-card.component';
 import { DescriptionCardComponent } from './description-card/description-card.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { UpdateInfoComponent } from './update-info/update-info.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
     GenreCardComponent,
     DirectorCardComponent,
     DescriptionCardComponent,
-    ProfileViewComponent
+    ProfileViewComponent,
+    UpdateInfoComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

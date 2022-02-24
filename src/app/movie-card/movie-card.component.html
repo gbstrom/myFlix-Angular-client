@@ -43,8 +43,8 @@
             >
                 Synopsis
             </button>
-            <mat-icon *ngIf="currentUsersFaves.includes(movie.Id)" (click)='removeFromFavorites(movie._id)'>favorite</mat-icon>
-            <mat-icon *ngIf="!currentUsersFaves.includes(movie.Id)" (click)='addToFavorites(movie._id)'>favorite_border</mat-icon>
+            <mat-icon *ngIf="itIsAFave(movie._id)" (click)='removeFromFavorites(movie._id)'>favorite</mat-icon>
+            <mat-icon *ngIf="!itIsAFave(movie._id)" (click)='addToFavorites(movie._id)'>favorite_border</mat-icon>
         </mat-card-actions>
     </mat-card>
 </div>

@@ -35,6 +35,8 @@ export class MovieCardComponent {
   ngOnInit(): void {
     this.getUser();
     this.getFavorites();
+    console.log("at the end of ngOnInit(), the value of currentUsersFaves is " + this.currentUsersFaves);
+    console.log(this.currentUsersFaves);
   };
 
   async getUser() {
@@ -54,12 +56,14 @@ export class MovieCardComponent {
     this.fetchApiData.getAllMovies().subscribe((res: any) => {
       this.movies = res;
       this.movies.forEach((movie) => {
+      let element = {name: "monkey"}
         if (this.user.FavoriteMovies.includes(movie._id)) {
           this.currentUsersFaves.push(movie);
         }
       });
     });
-  
+    console.log('at the end of this.getFavorites(), the value of currentUsersFaves is ' + this.currentUsersFaves);
+    console.log(this.currentUsersFaves);
   }
 
   getMovies(): void {
@@ -138,6 +142,33 @@ export class MovieCardComponent {
   //     return this.faveBoolean;
   //   };
   // }
+
+  itIsAFave(movieId: string): any {
+    const movieArray: any[] = this.currentUsersFaves;
+    // const movieArray: any[] = [{ _id: "60f1cc137a111c2a24f78e1b", Title: "Rear Window", Description: "A photogropher and his socialite girlfriend inadvertently come to suspect that one of their neighbors has murdered his wife in this Hitchcock classic."},
+    // { _id: "60f1cc667a111c2a24f78e1c", Title: "The 39 Steps", Description: "Through a sequence of unlikely circumstances a Canadian travelling in Britain becomes a murder suspect and has to flee across the country to find clues that will clear his name and expose a secret group of spies."},
+    // { _id: "60f1cda67a111c2a24f78e1f", Title: "The 40 Year Old Virgin", Description: "Hijinks ensue when the coworkers of a 40 year old salesman discover that he is still a virgin."},
+    // { _id: "60f1cb077a111c2a24f78e1a", Title: "North by Northwest", Description: "An advertising executive finds himself entangled by a case of mistaken identity in a dangerous world of espionage and adventure in one of Hitchcock's most beloved movies"},
+    // { _id: "60f1cd3b7a111c2a24f78e1e", Title: "Late Spring", Description: "A devoted daughter struggles to accept change when her father realizes that it is time for her to get married."},
+    // { _id: "60f1ca927a111c2a24f78e19", Title: "The Lego Batman Movie", Description: "Batman has to face his greatest fear to save Gotham City from the Joker while learning to work with the new police commissioner."}]
+    // const gregsArray: any[] = [{name: "Huey", species: "duck"}, {name: "Dewey", species: "duck"}, {name: "Louie", species: "duck"}];
+    if(movieArray.some(movie => movie._id === movieId)){
+      console.log('itIsAFave claims that movieArray includes ' + movieId)
+      return true;
+    } else {
+      console.log('itIsAFave denies that gregsArray includes ' + movieId)
+      return false;
+    }
+    
+    // console.log('itIsAFave claims that it is ' + gregsArray.includes(7) + " that gregsArray includes 7");
+    // console.log("itIsAFave is running, and the ")
+    // if (this.currentUsersFaves.includes(movieId)) {
+    //   console.log("itIsAFave is true about " + movieId)
+    // } else {
+    //   console.log("itIsAFave is false about " + movieId + " and yet currentUsersFaves is");
+    //   console.log(this.currentUsersFaves);
+    // };
+  }
 
   signOut(): void {
     this.router.navigate(['welcome']);

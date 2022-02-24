@@ -17,7 +17,7 @@ import { DescriptionCardComponent } from '../description-card/description-card.c
 
 export class ProfileViewComponent implements OnInit {
   favoriteMovies: any[] = [];
-  public data: any = {
+  public user: any = {
     Username: '',
     Email: '',
     Birthday: '',
@@ -46,12 +46,12 @@ export class ProfileViewComponent implements OnInit {
     // with all its details, is pushed into this.favoriteMovies
     getFaves(): Array<Object> {
       let movies: any[] = [];
-      let userData: any = localStorage.getItem('user');
-      this.data = JSON.parse(userData);
+      // let userData: any = localStorage.getItem('user');
+      // this.data = JSON.parse(userData);
       this.fetchApiData.getAllMovies().subscribe((res: any) => {
         movies = res;
         movies.forEach((movie) => {
-          if (this.data.FavoriteMovies.includes(movie._id)) {
+          if (this.user.FavoriteMovies.includes(movie._id)) {
             this.favoriteMovies.push(movie);
           }
         });
@@ -90,16 +90,22 @@ export class ProfileViewComponent implements OnInit {
         width: '500px'
       });
     }
-  
 
     ngOnInit(): void {
       if (localStorage.getItem('user') != null) {
         let userData: any = localStorage.getItem('user');
-        this.data = JSON.parse(userData);
-        console.log(this.data)
+        this.user = JSON.parse(userData);
+        console.log(this.user)
       };
       this.getFaves();
 
     }
+
+    signOut(): void {
+      this.router.navigate(['welcome']);
+      localStorage.clear();
+    }
   
   }
+
+

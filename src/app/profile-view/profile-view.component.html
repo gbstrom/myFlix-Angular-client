@@ -24,7 +24,7 @@
       Sign Out
   </button>
     </mat-card>
-  <mat-card *ngFor="let movie of favoriteMovies;" style="flex: 1 1 auto;">
+  <mat-card *ngFor="let movie of currentUsersFaves;" style="flex: 1 1 auto;">
     <mat-card-header>
     <mat-card-title>{{movie.Title}}</mat-card-title>
         <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
@@ -52,9 +52,8 @@
         >
             Synopsis
         </button>
-        <button>
-            <mat-icon>favorite_border</mat-icon>
-        </button>
+        <mat-icon *ngIf="itIsAFave(movie._id)" (click)='removeFromFavorites(movie._id)'>favorite</mat-icon>
+        <mat-icon *ngIf="!itIsAFave(movie._id)" (click)='addToFavorites(movie._id)'>favorite_border</mat-icon>
     </mat-card-actions>
 </mat-card>
 </div>

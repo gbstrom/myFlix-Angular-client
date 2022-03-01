@@ -1,3 +1,52 @@
+.favorites-list {
+  flex-wrap: wrap;
+}
+
+.movie-card {
+  width: 15%;
+  max-width: 320px;
+  margin: 15px 15px;
+  padding: 15px 15px;
+  opacity: 80%;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.movie-card:hover {
+  opacity:100%;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: center;
+}
+
 .movie-poster {
-    width: 150px;
+  width: 150px;
+}
+
+.profile-panel {
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  gap: 36px;
+  border-bottom: 1px solid;
+  margin-bottom: 16px;
+  background-color: white;
+  opacity: 80%;
+  flex-direction: row;
+  justify-content: space-between;
+  width: auto;
+  transition: 0.3s;
+}
+
+.sign-out-button {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  height: fit-content;
+}
+
+.profile-panel:hover {
+  opacity: 100%;
 }

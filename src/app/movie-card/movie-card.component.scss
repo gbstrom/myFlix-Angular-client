@@ -1,3 +1,88 @@
+header {
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  gap: 36px;
+  border-bottom: 1px solid;
+  margin-bottom: 16px;
+  background-color: white;
+  opacity: 80%;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: 0.3s;
+}
+  
+header:hover {
+  opacity: 100%;
+}
+
+.favorites-list {
+  flex-wrap: wrap;
+}
+
+.movie-card {
+  width: 15%;
+  max-width: 320px;
+  margin: 15px 15px;
+  padding: 15px 15px;
+  opacity: 80%;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.movie-card:hover {
+  opacity:100%;
+}
+
+.greeting {
+  text-align: center;
+}
+
+.header-links-div {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: center;
+}
+
 .movie-poster {
-    width: 150px;
+  width: 150px;
+}
+
+.favorites-list {
+  display: flex;
+  column-gap: 12px;
+  padding-top: 32px;
+  overflow-x: auto;
+  padding-top: 0;
+}
+
+.mat-card-title {
+  grid-area: title;
+  line-height: 1.2;
+}
+
+.mat-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 16px;
+  grid-area: actions;
+}
+
+img {
+  grid-area: img;
+  object-fit: contain;
+  align-self: center;
+  width: 100%;
+  height: auto;
+  margin-bottom: 24px;
+}
+
+.fav-icon:hover {
+  cursor: pointer;
 }

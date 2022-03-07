@@ -1,3 +1,8 @@
+/**
+ * The WelcomePageComponent is where users arrive on first opening the site. They can navigate from here to the
+ * login or registration forms.
+ * @module WelcomePageComponent
+ */
 import { Component, OnInit } from '@angular/core';
 import { UserLoginFormComponent } from '../user-login-form/user-login-form.component';
 import { UserRegistrationFormComponent } from '../user-registration-form/user-registration-form.component';
@@ -12,12 +17,20 @@ export class WelcomePageComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
   ngOnInit(): void {
   }
+  /**
+   * open dialog to display the registration form
+   * @module openUserRegistrationDialog
+   */
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
       width: '280px'
     });
   }
-openUserLoginDialog(): void {
+  /**
+   * open dialog to display the login form
+   * @module openUserLoginDialog
+   */
+  openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
       width: '280px'
     });

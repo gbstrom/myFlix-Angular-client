@@ -1,3 +1,7 @@
+/**
+ * The DirectorCardComponent is used to render information about directors.
+ * @module DirectorCardComponent
+ */
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -7,8 +11,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./director-card.component.scss']
 })
 
-
-
+/**
+ *
+ * @param data
+ */
 export class DirectorCardComponent implements OnInit {
 
   constructor(

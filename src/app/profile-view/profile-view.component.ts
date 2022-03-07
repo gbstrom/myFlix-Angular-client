@@ -1,3 +1,7 @@
+/**
+ * The ProfileViewComponent is used to view the user profile & favorites.
+ * @module ProfileViewComponent
+ */
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
@@ -41,6 +45,11 @@ export class ProfileViewComponent implements OnInit {
       this.getMoviesAndFaves();
     }
 
+
+    /**
+     * call API endpoint to get user info
+     * @function getUser
+     */
     getUser() {
       // this code sets the user object to the user found in localStorage
       if (localStorage.getItem('user') != null) {
@@ -52,6 +61,11 @@ export class ProfileViewComponent implements OnInit {
       };
     }
   
+    /**
+     * call API endpoint to get all the movies in the database, then sets the currentUsersFaves variable to the set of movies that are stored
+     * as favorites in this.user.FavoriteMovies.
+     * @function getMoviesAndFaves
+     */
     getMoviesAndFaves() {
       // this code sets the currentUsersFaves variable to the set of movies that the database has recorded as favorites for the user.
       this.fetchApiData.getAllMovies().subscribe((res: any) => {
@@ -64,16 +78,32 @@ export class ProfileViewComponent implements OnInit {
       });
     }
 
+    /**
+     * function that gets the router to navigate to the MovieCardComponent
+     * @function goToMovieCard
+     */
     goToMovieCard(): void {
       this.router.navigate(['movies']);
     }
 
+    /**
+     * open a dialog to edit the profile of the user
+     * @module openUpdateInfoCard
+     */
     openUpdateInfoCard(): void {
       this.dialog.open(UpdateInfoComponent, {
         width: '500px'
       });
     }
 
+    /**
+     *open a dialog to display the DirectorCardComponent
+     * @module openDirector
+     * @param name {string}
+     * @param bio {string}
+     * @param birth {string}
+     * @param death {string}
+     */
     openDirector(name: string, bio: string, birth: string, death: string): void {
       this.dialog.open(DirectorCardComponent, {
         data: {
@@ -86,6 +116,12 @@ export class ProfileViewComponent implements OnInit {
       });
     }
   
+    /**
+     *open a dialog to display the GenreCardComponent
+     * @module openGenre
+     * @param name {string}
+     * @param description {string}
+     */
     openGenre(name: string, description: string): void {
       this.dialog.open(GenreCardComponent, {
         data: {
@@ -95,7 +131,13 @@ export class ProfileViewComponent implements OnInit {
         width: '500px'
       });
     }
-  
+
+    /**
+     *open a dialog to display the DescriptionCardComponent
+     * @module openDescription
+     * @param name {string}
+     * @param description {string}
+     */
     openDescription(name: string, description: string): void {
       this.dialog.open(DescriptionCardComponent, {
         data: {
@@ -116,7 +158,13 @@ export class ProfileViewComponent implements OnInit {
         this.snackBar.open('Added to favorites', 'OK', { duration: 2000 });
       });
     }
-  
+
+    /**
+     * call API endpoint to remove a movie from user's favorites. Also revises the currentUsersFaves variable so that it 
+     * no longer includes the disfavored movie.
+     * @function removeFromFavorites
+     * @param movieId {string}
+     */
     removeFromFavorites(movieId: string): void {
       this.fetchApiData.deleteFavoriteMovie(movieId).subscribe((resp: any) => {
         const previousFavesWithDisfavoredMovieRemoved = this.currentUsersFaves.filter(movie => movie._id !== movieId);
@@ -125,7 +173,13 @@ export class ProfileViewComponent implements OnInit {
       })
     }
   
-
+    /**
+     * function used to monitor the favorite status of each movie. This is used to determine whether to display the fave icon or
+     * the not-fave icon.
+     * @function itIsAFave
+     * @param movieId {string}
+     * @return Boolean
+     */
     itIsAFave(movieId: string): any {
       const movieArray: any[] = this.currentUsersFaves;
       if(movieArray.some(movie => movie._id === movieId)){
@@ -135,6 +189,10 @@ export class ProfileViewComponent implements OnInit {
       }
     }  
 
+    /**
+     * function that gets the router to navigate to the welcome page when a user signs out.
+     * @function signOut
+     */
     signOut(): void {
       this.router.navigate(['welcome']);
       localStorage.clear();

@@ -1,3 +1,7 @@
+/**
+ * The UserLoginFormComponent is used to login users.
+ * @module UserLoginFormComponent
+ */
 import { Component, OnInit, Input } from '@angular/core';
 // You'll use this import to close the dialog on success
 import { MatDialogRef } from '@angular/material/dialog';
@@ -14,6 +18,9 @@ import { Router } from '@angular/router';
 })
 export class UserLoginFormComponent implements OnInit {
 
+  /**
+   * This binds data entered by the user to the userData object.
+   */
   @Input() userData = { Username: '', Password: ''};
 
   constructor(    
@@ -25,11 +32,13 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-// This is the function responsible for sending the form inputs to the backend
+/**
+ * This function makes an API call to login the user, then receives a JSON object including JWT and user data,
+ * which gets stored in localStorage as 'token' and 'user'
+ * @function loginUser
+ */
 loginUser(): void {
   this.fetchApiData.userLogin(this.userData).subscribe((result) => {
-    // Logic for a successful user login goes here! (To be implemented)
     this.dialogRef.close(); // This will close the modal on success!
 
     localStorage.setItem('token', result.token);

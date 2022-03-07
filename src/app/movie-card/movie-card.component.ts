@@ -1,3 +1,7 @@
+/**
+ * The MovieCardComponent is used to view the movies and add or remove favorites.
+ * @module MovieCardComponent
+ */
 import { Component, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../fetch-api-data.service'
 import { DirectorCardComponent } from '../director-card/director-card.component';
@@ -36,6 +40,10 @@ export class MovieCardComponent {
     this.getMoviesAndFaves();
   };
 
+  /**
+   * call API endpoint to get user info
+   * @function getUser
+   */
   getUser() {
     // this code sets the user object to the user found in localStorage
     if (localStorage.getItem('user') != null) {
@@ -47,6 +55,11 @@ export class MovieCardComponent {
     };
   }
 
+  /**
+   * call API endpoint to get all the movies in the database, then sets the currentUsersFaves variable to the set of movies that are stored
+   * as favorites in this.user.FavoriteMovies.
+   * @function getMoviesAndFaves
+   */
   getMoviesAndFaves() {
     // this code sets the currentUsersFaves variable to the set of movies that the database has recorded as favorites for the user.
     this.fetchApiData.getAllMovies().subscribe((res: any) => {
@@ -59,6 +72,14 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * open a dialog to display the DirectorCardComponent
+   * @module openDirector
+   * @param name {string}
+   * @param bio {string}
+   * @param birth {string}
+   * @param death {string}
+   */
   openDirector(name: string, bio: string, birth: string, death: string): void {
     this.dialog.open(DirectorCardComponent, {
       data: {
@@ -71,6 +92,12 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * open a dialog to display the GenreCardComponent
+   * @module openGenre
+   * @param name {string}
+   * @param description {string}
+   */
   openGenre(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       data: {
@@ -81,6 +108,12 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * open a dialog to display the DescriptionCardComponent
+   * @module openDescription
+   * @param name {string}
+   * @param description {string}
+   */
   openDescription(name: string, description: string): void {
     this.dialog.open(DescriptionCardComponent, {
       data: {
@@ -91,10 +124,20 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * function that gets the router to navigate to the profile page.
+   * @function openProfile
+   */
   openProfile(): void {
     this.router.navigate(['/profile']);
   }
 
+  /**
+   * call API endpoint to add a movie to user's favorites. Also revises the currentUsersFaves variable so that it 
+   * includes the newly favored movie.
+   * @function addToFavorites
+   * @param movieId {string}
+   */
   addToFavorites(movieId: string): void {
     this.fetchApiData.addFavoriteMovie(movieId).subscribe((resp: any) => {
       this.movies.forEach((movie) => {
@@ -106,6 +149,12 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * call API endpoint to remove a movie from user's favorites. Also revises the currentUsersFaves variable so that it 
+   * no longer includes the disfavored movie.
+   * @function removeFromFavorites
+   * @param movieId {string}
+   */
   removeFromFavorites(movieId: string): void {
     this.fetchApiData.deleteFavoriteMovie(movieId).subscribe((resp: any) => {
       const previousFavesWithDisfavoredMovieRemoved = this.currentUsersFaves.filter(movie => movie._id !== movieId);
@@ -114,6 +163,13 @@ export class MovieCardComponent {
     })
   }
 
+  /**
+   * function used to monitor the favorite status of each movie. This is used to determine whether to display the fave icon or
+   * the not-fave icon.
+   * @function itIsAFave
+   * @param movieId {string}
+   * @return Boolean
+   */
   itIsAFave(movieId: string): any {
     const movieArray: any[] = this.currentUsersFaves;
     if(movieArray.some(movie => movie._id === movieId)){
@@ -123,6 +179,10 @@ export class MovieCardComponent {
     }
   }
 
+  /**
+   * function that gets the router to navigate to the welcome page when a user signs out.
+   * @function signOut
+   */
   signOut(): void {
     this.router.navigate(['welcome']);
     localStorage.clear();

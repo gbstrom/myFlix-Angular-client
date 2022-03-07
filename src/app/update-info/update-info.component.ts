@@ -1,3 +1,7 @@
+/**
+ * The UpdateInfoComponent is used to update the user's info.
+ * @module UpdateInfoComponent
+ */
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserRegistrationService } from '../fetch-api-data.service';
@@ -12,6 +16,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 
 export class UpdateInfoComponent implements OnInit {
 
+  /**
+   * This binds input values to the newData object.
+   */
   @Input() newData = { Username: '', Password: '', Email: '', Birthday: '' };
 
   constructor(
@@ -30,6 +37,10 @@ export class UpdateInfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * makes API call to update user information with the data in the NewData object, if info is correctly submitted there.
+   * @function editUser
+   */
   editUser(): void {
     //prevent sending an empty field (that would erase the previous data and replace it with null)
     if (this.newData.Username && this.newData.Password && this.newData.Email && this.newData.Birthday) {
